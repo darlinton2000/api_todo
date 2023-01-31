@@ -95,7 +95,17 @@ class ApiController extends Controller
         return $array;
     }
 
-    public function deleteTodo() { 
+    public function deleteTodo($id) { 
+        $array = ['error' => ''];
 
+        $todo = Todo::find($id);
+
+        if ($todo){
+            $todo->delete();
+        } else {
+            $array['error'] = 'Não foi possível deletar a tarefa';
+        }
+
+        return $array;
     }
 }
