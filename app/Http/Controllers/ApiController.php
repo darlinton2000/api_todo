@@ -19,7 +19,7 @@ class ApiController extends Controller
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()){
-            $array['error'] = $validator->messages();
+            $array['error'] = $validator->errors();
             return $array;
         }
 
@@ -34,7 +34,11 @@ class ApiController extends Controller
     }
     
     public function readlAlltodos() { 
+        $array = ['error' => ''];
 
+        $array['list'] = Todo::all();
+
+        return $array;
     }
 
     public function readTodo() { 
