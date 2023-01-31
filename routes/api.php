@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,12 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
+/* Route test */
 Route::get('/ping', function(){
     return [
         'pong' => true
     ];
 });
+
+Route::post('/todo', [ApiController::class, 'createTodo']);
+Route::get('/todos', [ApiController::class, 'readlAlltodos']);
+Route::get('/todo/{id}', [ApiController::class, 'readTodo']);
+Route::put('/todo/{id}', [ApiController::class, 'updateTodo']);
+Route::delete('todo/{id}', [ApiController::class, 'deleteTodo']);
+
