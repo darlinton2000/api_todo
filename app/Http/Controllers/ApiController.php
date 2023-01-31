@@ -36,7 +36,10 @@ class ApiController extends Controller
     public function readlAlltodos() { 
         $array = ['error' => ''];
 
-        $array['list'] = Todo::all();
+        $todos = Todo::simplePaginate(2);
+
+        $array['list'] = $todos->items();
+        $array['current_page'] = $todos->currentPage();
 
         return $array;
     }
